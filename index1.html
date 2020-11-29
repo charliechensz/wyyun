@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的第一个页面</title>
+    <link rel="stylesheet" href="css/mystyle.css">
+    #<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/vue.js"></script>
+    
+</head>
+
+<body>
+    <div id="home">
+        <h1>
+            我的第一个页面
+        </h1>
+        <img src="img/foxtech-001.png" alt="">
+        <hr/>
+        <p v-if="img.length==0">尚未获取、开发中</p>
+        <div class="imglist">
+            <img v-for='img in img' v-bind:src="img" alt="">
+        </div>
+        <button v-on:click="getData()">获取视频</button>
+    </div>
+
+<script>
+    new Vue({
+        el:'#home',
+        data:{
+            img:['img/1.jpg','img/2.jpg','img/3.jpg','img/3.jpg']
+        },
+        methods:{
+            getData(){
+                console.log('开始获取...')             
+            }
+        },
+    }) 
+</script>
+</body>
+</html>
