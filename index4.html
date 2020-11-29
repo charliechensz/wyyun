@@ -1,0 +1,57 @@
+<!DOCTYPE test.info html>
+<!testing， 2020-1027 >
+<!aaa >
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的第一个页面</title>
+    <link rel="stylesheet" href="css/mystyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.js"></script>
+</head>
+
+<body>
+    <div id="home">
+        <h1>
+            我的第一个页面
+        </h1>
+        <img src="img/foxtech-001.png" alt="">
+        <hr/>
+        <p v-if="movies.length==0">尚未获取、开发中-1027</p>
+        <div class="imglist">
+            <img v-for='img in movies ' v-bind:src="apiurl+img.pic" alt="">
+        </div>
+        <button v-on:click="getData()">获取视频</button>
+    </div>
+
+<script>
+    new Vue({
+        el:'#home',
+        data:{
+            apiurl:'https://api.dweb.club/',
+            movies:[]
+        },
+        methods:{
+            getData(){
+                var self = this
+                
+                axios({
+                    method:'get',
+                    type:'jason',
+                    url:'https://api.dweb.club/dweb-api/get-index-data',
+                    // url:'https://mockapi.eolinker.com/XsqPTQPff916794c1a06aa8feb47df6f37526873010ebbc/https://api.dweb.club/dweb-api/get-index-data/',
+                    
+                }).then(function (res) {
+                    console.log(res.data.newsdata)
+                    self.movies = res.data.newsdata
+                })
+            }
+        },  
+    }) 
+</script>
+</body>
+</html>
